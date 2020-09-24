@@ -4,7 +4,7 @@
   "private": false,
   "dependencies": {
     "@accordproject/concerto-core": "^1.0.0-alpha.2",
-    "@babel/runtime": "^7.10.3",
+    "@babel/runtime": "7.13.10",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
     "lodash.set": "^4.3.2",
