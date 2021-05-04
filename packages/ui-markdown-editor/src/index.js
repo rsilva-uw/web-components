@@ -145,13 +145,13 @@ export const MarkdownEditor = (props) => {
   }, [canCopy, editor]);
 
   const onChange = (value) => {
-    if (props.readOnly) return;
+    if (props.readOnly || !editor?.children || !editor?.selection?.focus?.path) return;
     props.onChange(value, editor);
     const { selection } = editor;
     if (selection && isSelectionLinkBody(editor)) {
       setShowLinkModal(true);
     }
-    const currentStyleCalculated = BLOCK_STYLE[Node.parent(editor, editor.selection.focus.path).type] || 'Style';
+    const currentStyleCalculated = BLOCK_STYLE[Node.parent(editor, editor?.selection?.focus?.path)?.type] || 'Style';
     setCurrentStyle(currentStyleCalculated);
   };
 
@@ -182,10 +182,9 @@ export const MarkdownEditor = (props) => {
       Transforms.insertNodes(editor, imageNode[0]);
     }
   };
-
   return (
     <Slate editor={editor} value={props.value} onChange={onChange} >
-      { !props.readOnly
+      { !props.readOnly && props.toolbar
         && <FormatBar
         currentStyle={currentStyle}
         canBeFormatted={props.canBeFormatted}

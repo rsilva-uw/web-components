@@ -105,18 +105,17 @@ const ClauseComponent = React.forwardRef((props, ref) => {
     }
   };
 
-  const setDraggable = (event, draggable) => event.target.closest('.ui-contract-editor__clause').setAttribute('draggable', draggable);
-
+  // const setDraggable = (event, draggable) => event.target.closest('.ui-contract-editor__clause').setAttribute('draggable', draggable);
   return (
     <ClauseContext.Provider value={hovering}>
       <S.ClauseWrapper
         src={props.templateUri}
         id={props.name}
         className={`ui-contract-editor__clause ${props.error ? 'error' : ''}`}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
+        // onMouseEnter={() => setHovering(true)}
+        // onMouseLeave={() => setHovering(false)}
         style={{ userSelect: `${props.readOnly?"text":"none"}`, padding: '3px'}}
-        draggable="true"
+        draggable="false"
         ref={ref}
         error={props.error}
         {...props.attributes}
@@ -240,8 +239,8 @@ const ClauseComponent = React.forwardRef((props, ref) => {
           </> : null
         }
         <S.ClauseBody
-          onMouseEnter={(e) => setDraggable(e, false)}
-          onMouseLeave={(e) => setDraggable(e, true)}
+          // onMouseEnter={(e) => setDraggable(e, false)}
+          // onMouseLeave={(e) => setDraggable(e, true)}
         >
           {props.children}
         </S.ClauseBody>
